@@ -3,6 +3,8 @@ package pl.coderslab.entity;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.validator.LimitCollection;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -33,6 +35,7 @@ public class Article {
             joinColumns = @JoinColumn(name = "article_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     @NotEmpty(groups = None.class)
+    @LimitCollection(limit = 1)
     private Set<Category> categories = new HashSet<Category>();
 
     @Column(length = 2000)

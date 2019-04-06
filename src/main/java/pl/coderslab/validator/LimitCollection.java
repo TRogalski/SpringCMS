@@ -7,11 +7,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = NotEmptyCollectionValidator.class)
+@Constraint(validatedBy = LimitCollectionValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NotEmptyCollection {
-    String message() default "{notEmptyCollection.error.message}";
+
+public @interface LimitCollection {
+    int limit();
+    String message() default "{limitCollection.error.message}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
