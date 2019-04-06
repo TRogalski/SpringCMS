@@ -1,7 +1,6 @@
 package pl.coderslab.dao;
 
 import org.springframework.stereotype.Repository;
-import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Category;
 
 import javax.persistence.EntityManager;

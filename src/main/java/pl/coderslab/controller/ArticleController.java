@@ -15,6 +15,7 @@ import pl.coderslab.entity.Category;
 import pl.coderslab.entity.None;
 
 import javax.validation.Valid;
+import javax.validation.groups.Default;
 import java.util.List;
 
 @Controller
@@ -44,11 +45,10 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Validated({None.class}) Article article, BindingResult result) {
+    public String add(@Validated({None.class, Default.class}) Article article, BindingResult result) {
         if(result.hasErrors()){
             return "article/add";
         }
-
         articleDao.update(article);
         return "redirect:list";
     }

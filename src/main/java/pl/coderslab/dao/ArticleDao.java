@@ -38,7 +38,7 @@ public class ArticleDao {
         return articles;
     }
 
-    public List<Article> findLastFew(){
+    public List<Article> findLastFew() {
         Query query = entityManager.createQuery("SELECT A FROM Article A ORDER BY A.created");
         return query.setMaxResults(5).getResultList();
     }

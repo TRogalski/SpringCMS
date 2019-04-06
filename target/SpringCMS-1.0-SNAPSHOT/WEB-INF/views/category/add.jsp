@@ -11,8 +11,8 @@
 <%@ include file="/WEB-INF/views/main/nav-bar.html" %>
 
 <form:form method="post" modelAttribute="category" action="/category/add">
-    Name: <form:input path="name"/><br>
-    Description: <form:input path="description"/><br>
+    <div>Name: <form:input path="name"/><form:errors path="name"/></div><br>
+    <div>Description: <form:input path="description"/><form:errors path="description"/></div>><br>
     <input type="submit" value="Save">
 </form:form>
 </body>

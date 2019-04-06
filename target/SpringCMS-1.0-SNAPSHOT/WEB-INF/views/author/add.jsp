@@ -11,8 +11,8 @@
 <%@ include file="/WEB-INF/views/main/nav-bar.html" %>
 
 <form:form method="post" modelAttribute="author" action="/author/add">
-    First name: <form:input path="firstName"/><br>
-    Last name: <form:input path="lastName"/><br>
+    <div>First name: <form:input path="firstName"/><form:errors path="firstName"/></div><br>
+    <div>Last name: <form:input path="lastName"/><form:errors path="lastName"/></div><br>
     <input type="submit" value="Save">
 </form:form>
 </body>

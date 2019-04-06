@@ -15,12 +15,15 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(length = 100)
     @NotNull
     @Length(min=5)
     private String name;
+
     @Column(nullable = true)
     private String description;
+
     @ManyToMany(mappedBy = "categories",fetch = EAGER)
     private Set<Article> articles = new HashSet<Article>();
 

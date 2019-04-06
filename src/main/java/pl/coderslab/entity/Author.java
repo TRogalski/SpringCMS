@@ -1,7 +1,6 @@
 package pl.coderslab.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import pl.coderslab.dao.ArticleDao;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,9 +14,13 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
+    @NotBlank
     private String firstName;
+
     @NotNull
+    @NotBlank
     private String lastName;
 
     public Author() {
