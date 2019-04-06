@@ -12,8 +12,10 @@ import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
+import pl.coderslab.repository.ArticleRepository;
 import pl.coderslab.validator.None;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.groups.Default;
 import java.time.LocalDateTime;
@@ -31,6 +33,16 @@ public class ArticleController {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    @RequestMapping(value="test",method = RequestMethod.GET)
+    @ResponseBody
+    public String getTopFiveArticles(){
+        return articleRepository.customGetAll().toString();
+    }
+
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String viewList(Model model) {
