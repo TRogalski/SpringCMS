@@ -33,14 +33,19 @@ public class ArticleDao {
     }
 
     public List<Article> findAll() {
-        Query query = entityManager.createQuery("SELECT A FROM Article A");
+        Query query = entityManager.createQuery("SELECT A FROM Article A WHERE A.draft=FALSE");
         List<Article> articles = query.getResultList();
         return articles;
     }
 
-    public List<Article> findLastFew() {
-        Query query = entityManager.createQuery("SELECT A FROM Article A ORDER BY A.created");
+    public List<Article> findLastFiveArticles() {
+        Query query = entityManager.createQuery("SELECT A FROM Article A WHERE A.draft=FALSE ORDER BY A.created");
         return query.setMaxResults(5).getResultList();
+    }
+
+    public List<Article> findDrafts(){
+        Query query = entityManager.createQuery("SELECT A FROM Article A WHERE A.draft=TRUE");
+        return query.getResultList();
     }
 }
 

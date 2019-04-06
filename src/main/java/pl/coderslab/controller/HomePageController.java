@@ -25,7 +25,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String mainPage(Model model) {
-        model.addAttribute("articles", articleDao.findLastFew());
+        model.addAttribute("articles", articleDao.findLastFiveArticles());
         model.addAttribute("categories", categoryDao.findAll());
         return "main/index";
     }

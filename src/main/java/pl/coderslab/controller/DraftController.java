@@ -5,23 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
-import pl.coderslab.validator.None;
+import pl.coderslab.validator.Draft;
 
-import javax.validation.Valid;
-import javax.validation.groups.Default;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping("/article")
-public class ArticleController {
+@RequestMapping("/draft")
+public class DraftController {
 
     @Autowired
     private ArticleDao articleDao;
@@ -34,57 +35,59 @@ public class ArticleController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String viewList(Model model) {
-        List<Article> articles = articleDao.findAll();
-        model.addAttribute("articles", articles);
-        return "article/list";
+        model.addAttribute("articles", articleDao.findDrafts());
+        return "draft/list";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String viewAdd(Model model) {
         model.addAttribute("article", new Article());
-        return "article/add";
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Validated({None.class, Default.class}) Article article, BindingResult result) {
-        if (result.hasErrors()) {
-            return "article/add";
-        }
-        article.setDraft(false);
-        article.setCreated(String.valueOf(LocalDateTime.now()));
-        articleDao.update(article);
-        return "redirect:list";
+        return "draft/add";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String viewEdit(@PathVariable Long id, Model model) {
-        Article article = articleDao.findById(id);
-        model.addAttribute("article", article);
-        return "article/edit";
+        model.addAttribute("article", articleDao.findById(id));
+        return "draft/edit";
+    }
+
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    public String viewRemove(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleDao.findById(id));
+        return "draft/remove";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(@Validated(Draft.class) Article article, BindingResult result) {
+        if (result.hasErrors()) {
+            return "draft/add";
+        }
+        article.setDraft(true);
+        article.setCreated(String.valueOf(LocalDateTime.now()));
+        articleDao.save(article);
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@Valid Article article, BindingResult result) {
+    public String edit(@Validated(Draft.class) Article article, BindingResult result) {
         if (result.hasErrors()) {
-            return "article/edit";
+            return "draft/edit";
         }
         article.setUpdated(String.valueOf(LocalDateTime.now()));
         articleDao.update(article);
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
-    public String viewRemove(@PathVariable Long id, Model model) {
-        Article article = articleDao.findById(id);
-        model.addAttribute("article", article);
-        return "article/remove";
-    }
-
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public String remove(@RequestParam Long id) {
-        Article article = articleDao.findById(id);
+    public String remove(@ModelAttribute Article article) {
         articleDao.remove(article);
         return "redirect:list";
+    }
+
+    @RequestMapping(value = "/publish/{id}", method = RequestMethod.GET)
+    public String viewPublish(@PathVariable Long id, Model model) {
+        model.addAttribute("article", articleDao.findById(id));
+        return "draft/publish";
     }
 
     @ModelAttribute("authors")

@@ -3,10 +3,13 @@ package pl.coderslab.entity;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.validator.Draft;
 import pl.coderslab.validator.LimitCollection;
+import pl.coderslab.validator.None;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +24,9 @@ public class Article {
     private Long id;
 
     @Column(length = 200)
-    @NotNull(message = "Can't be empty")
-    @NotBlank(message = "Can't be empty")
-    @Length(max = 200, message = "Has to be less than 200 characters")
+    @NotNull(message = "Can't be empty", groups = {Draft.class, Default.class})
+    @NotBlank(message = "Can't be empty", groups = {Draft.class, Default.class})
+    @Length(max = 200, message = "Has to be less than 200 characters", groups = {Draft.class, Default.class})
     private String title;
 
     @ManyToOne(fetch = EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -39,9 +42,11 @@ public class Article {
     private Set<Category> categories = new HashSet<Category>();
 
     @Column(length = 2000)
-    @NotNull(message = "Can't be empty")
-    @Length(min = 500, message = "Has to be at least 500 characters")
+    @NotNull(message = "Can't be empty", groups = {Draft.class, Default.class})
+    @Length(min = 500, message = "Has to be at least 500 characters", groups = {Draft.class, Default.class})
     private String content;
+
+    private boolean draft;
 
     @Column(columnDefinition = "DATETIME")
     private String created;
@@ -130,13 +135,21 @@ public class Article {
         this.updated = updated;
     }
 
-    @PrePersist
-    public void setCreatedDate() {
-        this.setCreated(String.valueOf(LocalDateTime.now()));
+    public boolean isDraft() {
+        return draft;
     }
 
-    @PreUpdate
-    public void setUpdatedDate() {
-        this.setUpdated(String.valueOf(LocalDateTime.now()));
+    public void setDraft(boolean draft) {
+        this.draft = draft;
     }
+
+//    @PrePersist
+//    public void setCreatedDate() {
+//        this.setCreated(String.valueOf(LocalDateTime.now()));
+//    }
+//
+//    @PreUpdate
+//    public void setUpdatedDate() {
+//        this.setUpdated(String.valueOf(LocalDateTime.now()));
+//    }
 }
