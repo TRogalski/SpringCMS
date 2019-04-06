@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Bootstrap wrangling</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Articles</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Articles
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/article/list">List</a></li>
+                    <li><a href="/article/add">Add</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Authors
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/author/list">List</a></li>
+                    <li><a href="/author/add">Add</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/category/list">List</a></li>
+                    <li><a href="/category/add">Add</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
