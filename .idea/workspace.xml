@@ -110,6 +110,7 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/entity/Article.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/controller/ArticleController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -260,7 +261,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554560374519" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554560489940" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -396,16 +397,15 @@
       <workItem from="1554305450446" duration="8008000" />
       <workItem from="1554407959312" duration="4237000" />
       <workItem from="1554413810844" duration="3369000" />
-      <workItem from="1554559674335" duration="518000" />
+      <workItem from="1554559674335" duration="813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66664000" />
+    <option name="totallyTimeSpent" value="66959000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21361372" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -447,7 +447,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/entity/pl/coderslab/app.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/beans/AppTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html" />
     <entry file="file://$PROJECT_DIR$/src/main/java/AppInitializer.java">
@@ -797,6 +796,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
